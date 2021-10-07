@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 // [RequireComponent(typeof(Rigidbody))]
 public class Bolinha : MonoBehaviour
 {
-    Rigidbody rb;
+    public Rigidbody rb;
+    public bool canMove {get; set;} = true;
     public float speed = 2.0f;
     public float jumpForce = 3.0f;
     bool isJumping;
@@ -34,6 +35,8 @@ public class Bolinha : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!canMove) return;
+
         rb.AddForce(0, 0, speed * vertical, ForceMode.Force);
         rb.AddForce(speed * horizontal, 0, 0, ForceMode.Force);
 
